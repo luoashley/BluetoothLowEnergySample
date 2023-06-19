@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from 'react-native';
 import DeviceModal from './DeviceConnectionModal';
 import PulseIndicator from './PulseIndicator';
@@ -43,24 +44,28 @@ const App = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.heartRateTitleWrapper}>
         {connectedDevice ? (
-          <>
+          <View>
             <PulseIndicator />
-            <Text style={styles.heartRateTitleText}>Your Heart Rate Is:</Text>
+            <Text style={styles.heartRateTitleText}>Connect Successful</Text>
             <Text style={styles.heartRateText}>{heartRate} bpm</Text>
-          </>
+          </View>
         ) : (
-          <Text style={styles.heartRateTitleText}>
-            Please Connect to a Heart Rate Monitor
-          </Text>
+          <View style={styles.logoWrapper}>
+            <Image
+              source={require('./images/earphone_logo.jpg')}
+              style={styles.logoStyle}
+            />
+            <Text style={styles.heartRateTitleText}>BLE Widget</Text>
+            <TouchableOpacity
+              onPress={connectedDevice ? disconnectFromDevice : openModal}
+              style={styles.ctaButton}>
+              <Text style={styles.ctaButtonText}>
+                {connectedDevice ? 'Disconnect' : 'Connect'}
+              </Text>
+            </TouchableOpacity>
+          </View>
         )}
       </View>
-      <TouchableOpacity
-        onPress={connectedDevice ? disconnectFromDevice : openModal}
-        style={styles.ctaButton}>
-        <Text style={styles.ctaButtonText}>
-          {connectedDevice ? 'Disconnect' : 'Connect'}
-        </Text>
-      </TouchableOpacity>
       <DeviceModal
         closeModal={hideModal}
         visible={isModalVisible}
@@ -74,18 +79,17 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: 'white',
   },
   heartRateTitleWrapper: {
-    flex: 1,
+    flex: 2,
     justifyContent: 'center',
     alignItems: 'center',
   },
   heartRateTitleText: {
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginHorizontal: 20,
     color: 'black',
   },
   heartRateText: {
@@ -93,18 +97,27 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   ctaButton: {
-    backgroundColor: 'purple',
+    backgroundColor: 'grey',
     justifyContent: 'center',
     alignItems: 'center',
     height: 50,
-    marginHorizontal: 20,
-    marginBottom: 5,
-    borderRadius: 8,
+    width: 200,
+    marginVertical: 20,
+    borderRadius: 10,
   },
   ctaButtonText: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
     color: 'white',
+  },
+  logoWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoStyle: {
+    width: 150,
+    height: 150,
+    resizeMode: 'contain',
   },
 });
 
