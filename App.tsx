@@ -18,7 +18,6 @@ const App = () => {
     allDevices,
     connectToDevice,
     connectedDevice,
-    heartRate,
     disconnectFromDevice,
   } = useBLE();
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
@@ -45,9 +44,8 @@ const App = () => {
       <View style={styles.heartRateTitleWrapper}>
         {connectedDevice ? (
           <View>
+            <Text style={styles.menuTitleText}>Menu</Text>
             <PulseIndicator />
-            <Text style={styles.heartRateTitleText}>Connect Successful</Text>
-            <Text style={styles.heartRateText}>{heartRate} bpm</Text>
           </View>
         ) : (
           <View style={styles.logoWrapper}>
@@ -82,7 +80,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   heartRateTitleWrapper: {
-    flex: 2,
+    flex: 1,
+    marginVertical: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -91,10 +90,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: 'black',
-  },
-  heartRateText: {
-    fontSize: 25,
-    marginTop: 15,
   },
   ctaButton: {
     backgroundColor: 'grey',
@@ -118,6 +113,15 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     resizeMode: 'contain',
+  },
+  menuTitleText: {
+    flex: 1,
+    marginTop: 30,
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginHorizontal: 20,
+    textAlign: 'center',
+    color: 'black',
   },
 });
 

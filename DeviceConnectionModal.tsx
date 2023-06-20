@@ -80,8 +80,8 @@ const modalStyle = StyleSheet.create({
     backgroundColor: '#f2f2f2',
   },
   modalFlatlistContiner: {
-    flex: 1,
     justifyContent: 'center',
+    marginVertical: 25,
   },
   modalCellOutline: {
     borderWidth: 1,
@@ -97,7 +97,7 @@ const modalStyle = StyleSheet.create({
   },
   modalTitleText: {
     marginTop: 40,
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold',
     marginHorizontal: 20,
     textAlign: 'center',
@@ -107,13 +107,13 @@ const modalStyle = StyleSheet.create({
     backgroundColor: 'grey',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 50,
+    height: 40,
     marginHorizontal: 20,
     marginBottom: 5,
-    borderRadius: 8,
+    borderRadius: 10,
   },
   ctaButtonText: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
     color: 'white',
   },
