@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
   Image,
 } from 'react-native';
+import {buttons, logo, menu, mainPageStyles} from './styles/styles';
 import DeviceModal from './components/DeviceConnectionModal';
 import useBLE from './components/useBLE';
 
@@ -39,32 +39,36 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.heartRateTitleWrapper}>
+    <SafeAreaView style={mainPageStyles.container}>
+      <View style={mainPageStyles.mainPageTitleWrapper}>
         {connectedDevice ? (
-          <View style={styles.menuWrapper}>
-            <Text style={styles.menuTitleText}>Menu</Text>
-            <TouchableOpacity style={styles.ctaButton}>
-              <Text style={styles.ctaButtonText}>Info</Text>
+          <View style={menu.menuWrapper}>
+            <Text style={menu.menuTitleText}>Menu</Text>
+            <TouchableOpacity style={buttons.optionButton}>
+              <Text style={buttons.optionButtonText}>Info</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.ctaButton}>
-              <Text style={styles.ctaButtonText}>Control Panel</Text>
+            <TouchableOpacity style={buttons.optionButton}>
+              <Text style={buttons.optionButtonText}>Control Panel</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.ctaButton}>
-              <Text style={styles.ctaButtonText}>Log</Text>
+            <TouchableOpacity style={buttons.optionButton}>
+              <Text style={buttons.optionButtonText}>Log</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={buttons.optionButton}>
+              <Text style={buttons.optionButtonText}>Back</Text>
             </TouchableOpacity>
           </View>
         ) : (
-          <View style={styles.logoWrapper}>
+          <View style={logo.logoWrapper}>
             <Image
               source={require('./images/earphone_logo.jpg')}
-              style={styles.logoStyle}
+              style={logo.logoStyle}
             />
-            <Text style={styles.heartRateTitleText}>BLE Widget</Text>
+            <Text style={logo.logoTitleText}>BLE Widget</Text>
             <TouchableOpacity
               onPress={connectedDevice ? disconnectFromDevice : openModal}
-              style={styles.ctaButton}>
-              <Text style={styles.ctaButtonText}>
+              style={buttons.optionButton}>
+              <Text style={buttons.optionButtonText}>
                 {connectedDevice ? 'Disconnect' : 'Connect'}
               </Text>
             </TouchableOpacity>
@@ -80,59 +84,5 @@ const App = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  heartRateTitleWrapper: {
-    flex: 1,
-    marginVertical: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  heartRateTitleText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: 'black',
-  },
-  ctaButton: {
-    backgroundColor: 'grey',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 50,
-    width: 200,
-    marginVertical: 20,
-    borderRadius: 10,
-  },
-  ctaButtonText: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  logoWrapper: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logoStyle: {
-    width: 150,
-    height: 150,
-    resizeMode: 'contain',
-  },
-  menuTitleText: {
-    flex: 1,
-    marginTop: 30,
-    fontSize: 25,
-    fontWeight: 'bold',
-    marginHorizontal: 20,
-    textAlign: 'center',
-    color: 'black',
-  },
-  menuWrapper: {
-    justifyContent: 'center',
-  },
-});
 
 export default App;

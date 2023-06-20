@@ -5,10 +5,10 @@ import {
   Modal,
   SafeAreaView,
   Text,
-  StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import {Device} from 'react-native-ble-plx';
+import {buttons, mainPageStyles, modalStyle} from '../styles/styles';
 
 type DeviceModalListItemProps = {
   item: ListRenderItemInfo<Device>;
@@ -34,8 +34,8 @@ const DeviceModalListItem: FC<DeviceModalListItemProps> = props => {
   return (
     <TouchableOpacity
       onPress={connectAndCloseModal}
-      style={modalStyle.ctaButton}>
-      <Text style={modalStyle.ctaButtonText}>{item.item.name}</Text>
+      style={buttons.optionButton}>
+      <Text style={buttons.optionButtonText}>{item.item.name}</Text>
     </TouchableOpacity>
   );
 };
@@ -58,14 +58,14 @@ const DeviceModal: FC<DeviceModalProps> = props => {
 
   return (
     <Modal
-      style={modalStyle.modalContainer}
+      style={mainPageStyles.container}
       animationType="slide"
       transparent={false}
       visible={visible}>
       <SafeAreaView style={modalStyle.modalTitle}>
         <Text style={modalStyle.modalTitleText}>Select Device</Text>
         <FlatList
-          contentContainerStyle={modalStyle.modalFlatlistContiner}
+          contentContainerStyle={modalStyle.modalFlatlistContainer}
           data={devices}
           renderItem={renderDeviceModalListItem}
         />
@@ -73,50 +73,5 @@ const DeviceModal: FC<DeviceModalProps> = props => {
     </Modal>
   );
 };
-
-const modalStyle = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    backgroundColor: '#f2f2f2',
-  },
-  modalFlatlistContiner: {
-    justifyContent: 'center',
-    marginVertical: 25,
-  },
-  modalCellOutline: {
-    borderWidth: 1,
-    borderColor: 'black',
-    alignItems: 'center',
-    marginHorizontal: 20,
-    paddingVertical: 15,
-    borderRadius: 8,
-  },
-  modalTitle: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  modalTitleText: {
-    marginTop: 40,
-    fontSize: 25,
-    fontWeight: 'bold',
-    marginHorizontal: 20,
-    textAlign: 'center',
-    color: 'black',
-  },
-  ctaButton: {
-    backgroundColor: 'grey',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 40,
-    marginHorizontal: 20,
-    marginBottom: 5,
-    borderRadius: 10,
-  },
-  ctaButtonText: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: 'white',
-  },
-});
 
 export default DeviceModal;
