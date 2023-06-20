@@ -7,9 +7,8 @@ import {
   View,
   Image,
 } from 'react-native';
-import DeviceModal from './DeviceConnectionModal';
-import PulseIndicator from './PulseIndicator';
-import useBLE from './useBLE';
+import DeviceModal from './components/DeviceConnectionModal';
+import useBLE from './components/useBLE';
 
 const App = () => {
   const {
@@ -43,9 +42,17 @@ const App = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.heartRateTitleWrapper}>
         {connectedDevice ? (
-          <View>
+          <View style={styles.menuWrapper}>
             <Text style={styles.menuTitleText}>Menu</Text>
-            <PulseIndicator />
+            <TouchableOpacity style={styles.ctaButton}>
+              <Text style={styles.ctaButtonText}>Info</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.ctaButton}>
+              <Text style={styles.ctaButtonText}>Control Panel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.ctaButton}>
+              <Text style={styles.ctaButtonText}>Log</Text>
+            </TouchableOpacity>
           </View>
         ) : (
           <View style={styles.logoWrapper}>
@@ -122,6 +129,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     textAlign: 'center',
     color: 'black',
+  },
+  menuWrapper: {
+    justifyContent: 'center',
   },
 });
 
