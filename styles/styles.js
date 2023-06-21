@@ -15,6 +15,16 @@ const buttons = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
+  backButton: {
+    backgroundColor: 'grey-green',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
+    width: 200,
+    marginVertical: 20,
+    borderRadius: 10,
+  },
+
 });
 
 const logo = StyleSheet.create({
