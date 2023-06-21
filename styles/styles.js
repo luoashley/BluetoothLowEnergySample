@@ -16,7 +16,7 @@ const buttons = StyleSheet.create({
     color: 'white',
   },
   backButton: {
-    backgroundColor: 'grey-green',
+    backgroundColor: '#5f9ea0',
     justifyContent: 'center',
     alignItems: 'center',
     height: 50,

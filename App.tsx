@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-} from 'react-native';
+import {SafeAreaView, Text, TouchableOpacity, View, Image} from 'react-native';
 import {buttons, logo, menu, mainPageStyles} from './styles/styles';
 import DeviceModal from './components/DeviceConnectionModal';
 import useBLE from './components/useBLE';
@@ -38,6 +32,10 @@ const App = () => {
     setIsModalVisible(true);
   };
 
+  const navigateBack = () => {
+    disconnectFromDevice();
+  };
+
   return (
     <SafeAreaView style={mainPageStyles.container}>
       <View style={mainPageStyles.mainPageTitleWrapper}>
@@ -54,7 +52,8 @@ const App = () => {
               <Text style={buttons.optionButtonText}>Log</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={buttons.optionButton}>
+                onPress={navigateBack}
+                style={buttons.backButton}>
               <Text style={buttons.optionButtonText}>Back</Text>
             </TouchableOpacity>
           </View>
