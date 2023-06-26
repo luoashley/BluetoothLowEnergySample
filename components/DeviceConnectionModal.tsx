@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   Text,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import {Device} from 'react-native-ble-plx';
 import {buttons, mainPageStyles, modalStyle} from '../styles/styles';
@@ -32,11 +33,13 @@ const DeviceModalListItem: FC<DeviceModalListItemProps> = props => {
   }, [closeModal, connectToPeripheral, item.item]);
 
   return (
-    <TouchableOpacity
-      onPress={connectAndCloseModal}
-      style={buttons.optionButton}>
-      <Text style={buttons.optionButtonText}>{item.item.name}</Text>
-    </TouchableOpacity>
+    <View>
+      <TouchableOpacity
+        onPress={connectAndCloseModal}
+        style={buttons.optionButton}>
+        <Text style={buttons.optionButtonText}>{item.item.name}</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
